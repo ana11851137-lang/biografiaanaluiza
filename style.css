@@ -1,0 +1,727 @@
+
+/* =====================================
+   TEMA HOMEM-ARANHA
+   BIOGRAFIA - ANA LUIZA
+===================================== */
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --vermelho: #e50914;
+    --vermelho-escuro: #8b0000;
+    --azul: #0756a5;
+    --azul-claro: #1685e8;
+    --preto: #05070c;
+    --cinza: #111722;
+    --branco: #ffffff;
+}
+
+body {
+    background-color: var(--preto);
+    color: var(--branco);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* SELEÇÃO DE TEXTO */
+
+::selection {
+    background-color: var(--vermelho);
+    color: white;
+}
+
+/* BARRA DE ROLAGEM */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #05070c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--vermelho);
+    border-radius: 10px;
+}
+
+/* =====================================
+   ABERTURA
+===================================== */
+
+#abertura {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at center, #102c50 0%, #080d18 45%, #030407 100%);
+}
+
+#abertura::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(30deg, transparent 48%, rgba(255,255,255,0.08) 49%, transparent 50%),
+        linear-gradient(-30deg, transparent 48%, rgba(255,255,255,0.08) 49%, transparent 50%),
+        linear-gradient(90deg, transparent 48%, rgba(255,255,255,0.06) 49%, transparent 50%);
+
+    background-size: 90px 90px;
+    opacity: 0.5;
+    animation: teia-movimento 15s linear infinite;
+}
+
+#abertura::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        120deg,
+        rgba(229, 9, 20, 0.20),
+        transparent 40%,
+        rgba(7, 86, 165, 0.25)
+    );
+
+    pointer-events: none;
+}
+
+.teia {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border: 2px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.teia-1 {
+    top: -170px;
+    left: -150px;
+    box-shadow:
+        0 0 0 30px rgba(255,255,255,0.03),
+        0 0 0 60px rgba(255,255,255,0.03);
+}
+
+.teia-2 {
+    bottom: -180px;
+    right: -150px;
+    box-shadow:
+        0 0 0 30px rgba(255,255,255,0.03),
+        0 0 0 60px rgba(255,255,255,0.03);
+}
+
+.abertura-conteudo {
+    position: relative;
+    z-index: 2;
+    padding: 25px;
+    animation: aparecer 2s ease;
+}
+
+.legenda {
+    color: #ff4040;
+    letter-spacing: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.aranha {
+    font-size: 55px;
+    color: var(--vermelho);
+    text-shadow: 0 0 25px var(--vermelho);
+    animation: flutuar 3s ease-in-out infinite;
+}
+
+.abertura-conteudo h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(45px, 9vw, 100px);
+    letter-spacing: 5px;
+    margin: 10px 0;
+    text-shadow: 0 0 20px rgba(229,9,20,0.5);
+}
+
+.abertura-conteudo h1 span {
+    color: var(--vermelho);
+}
+
+.linha-vermelha {
+    height: 4px;
+    width: 100px;
+    background: var(--vermelho);
+    margin: 25px auto;
+    box-shadow: 0 0 15px var(--vermelho);
+    animation: linha 2s ease;
+}
+
+.frase-abertura {
+    color: #d9e7f8;
+    font-size: 17px;
+    line-height: 1.9;
+    margin-bottom: 35px;
+}
+
+.botao-entrada {
+    display: inline-block;
+    text-decoration: none;
+    background: var(--vermelho);
+    color: white;
+    padding: 16px 30px;
+    border: 2px solid var(--vermelho);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    transition: 0.4s;
+    box-shadow: 0 0 20px rgba(229,9,20,0.5);
+}
+
+.botao-entrada:hover {
+    background: transparent;
+    color: white;
+    border-color: var(--azul-claro);
+    box-shadow: 0 0 25px var(--azul-claro);
+    transform: scale(1.06);
+}
+
+.ano-abertura {
+    margin-top: 45px;
+    color: #7f91a8;
+    letter-spacing: 4px;
+    font-size: 11px;
+}
+
+/* =====================================
+   CABEÇALHO
+===================================== */
+
+header {
+    width: 100%;
+    background: rgba(5,7,12,0.96);
+    border-bottom: 2px solid var(--vermelho);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 5px 25px rgba(229,9,20,0.15);
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    min-height: 75px;
+    padding: 15px 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 27px;
+    font-weight: 800;
+    text-decoration: none;
+    color: white;
+}
+
+.logo span {
+    color: var(--vermelho);
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    color: var(--vermelho);
+}
+
+/* =====================================
+   APRESENTAÇÃO
+===================================== */
+
+.hero {
+    min-height: 85vh;
+    padding: 80px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+
+    background:
+        linear-gradient(120deg, #080b13 50%, #071b35 100%);
+}
+
+.hero-texto {
+    max-width: 600px;
+    animation: aparecer 1.5s ease;
+}
+
+.subtitulo {
+    color: var(--vermelho);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(35px, 6vw, 65px);
+    line-height: 1.3;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--vermelho);
+    text-shadow: 0 0 20px rgba(229,9,20,0.4);
+}
+
+.hero-texto > p:not(.subtitulo) {
+    color: #c3d0e0;
+    line-height: 1.9;
+    margin-bottom: 30px;
+}
+
+.botao {
+    display: inline-block;
+    background: var(--vermelho);
+    color: white;
+    text-decoration: none;
+    padding: 13px 25px;
+    border: 2px solid var(--vermelho);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.botao:hover {
+    background: transparent;
+    color: white;
+    border-color: var(--azul-claro);
+    box-shadow: 0 0 20px rgba(22,133,232,0.4);
+    transform: translateY(-4px);
+}
+
+/* VISUAL DA APRESENTAÇÃO */
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.circulo {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 4px solid var(--vermelho);
+    outline: 2px solid var(--azul);
+    outline-offset: 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    background: radial-gradient(circle, #102d50, #05070c);
+    box-shadow:
+        0 0 25px rgba(229,9,20,0.4),
+        inset 0 0 30px rgba(7,86,165,0.4);
+
+    animation: flutuar 4s ease-in-out infinite;
+}
+
+.aranha-visual {
+    font-size: 65px;
+    filter: drop-shadow(0 0 12px red);
+}
+
+.circulo span {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+/* =====================================
+   SEÇÕES
+===================================== */
+
+.secao {
+    padding: 90px 10%;
+    scroll-margin-top: 90px;
+}
+
+.secao:nth-of-type(even) {
+    background: #080d17;
+}
+
+.secao h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    margin-bottom: 35px;
+}
+
+.secao h2 span {
+    color: var(--vermelho);
+    text-shadow: 0 0 15px rgba(229,9,20,0.3);
+}
+
+/* CARTÕES */
+
+.cartao {
+    background: linear-gradient(135deg, #111722, #09172a);
+    padding: 35px;
+    border-radius: 8px;
+    border-left: 4px solid var(--vermelho);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.cartao:hover {
+    border-left-color: var(--azul-claro);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(7,86,165,0.15);
+}
+
+.cartao p {
+    color: #d2dbe7;
+    font-size: 14px;
+    line-height: 2;
+    margin-bottom: 18px;
+    text-align: justify;
+}
+
+.cartao p:last-child {
+    margin-bottom: 0;
+}
+
+/* =====================================
+   HABILIDADES
+===================================== */
+
+.habilidades-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.habilidade-card {
+    padding: 30px;
+    background: linear-gradient(145deg, #121925, #09172a);
+    border: 1px solid rgba(229,9,20,0.4);
+    border-radius: 8px;
+    transition: 0.4s;
+}
+
+.habilidade-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--azul-claro);
+    box-shadow: 0 10px 30px rgba(7,86,165,0.2);
+}
+
+.icone {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.habilidade-card h3,
+.cartao h3 {
+    color: var(--vermelho);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.habilidade-card p {
+    color: #c7d2e0;
+    font-size: 13px;
+    line-height: 1.9;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+/* =====================================
+   PROJETOS
+===================================== */
+
+.projeto {
+    max-width: 700px;
+}
+
+.tag {
+    display: inline-block;
+    background: rgba(7,86,165,0.25);
+    border: 1px solid var(--azul);
+    color: #7dbdff;
+    padding: 8px 13px;
+    border-radius: 4px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+/* =====================================
+   CURRÍCULO
+===================================== */
+
+.curriculo {
+    text-align: center;
+}
+
+.curriculo .icone {
+    font-size: 50px;
+}
+
+.curriculo .botao {
+    margin-top: 25px;
+}
+
+/* =====================================
+   CONTATO
+===================================== */
+
+.contato {
+    text-align: center;
+}
+
+.contato .botao {
+    margin-top: 20px;
+}
+
+/* =====================================
+   RODAPÉ
+===================================== */
+
+footer {
+    text-align: center;
+    padding: 35px 20px;
+    background: #030407;
+    border-top: 2px solid var(--vermelho);
+}
+
+.teia-footer {
+    font-size: 35px;
+    color: var(--vermelho);
+    margin-bottom: 12px;
+}
+
+footer p {
+    color: white;
+    font-size: 13px;
+}
+
+.frase-footer {
+    color: #8294ac;
+    margin-top: 10px;
+    font-size: 11px;
+}
+
+/* =====================================
+   ANIMAÇÕES
+===================================== */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes flutuar {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes linha {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100px;
+    }
+}
+
+@keyframes teia-movimento {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 90px 90px;
+    }
+}
+
+/* =====================================
+   RESPONSIVIDADE
+===================================== */
+
+@media (max-width: 850px) {
+
+    .navbar {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .menu {
+        justify-content: center;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 70px 8%;
+    }
+
+    .hero-visual {
+        margin-top: 30px;
+    }
+
+    .habilidades-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .secao {
+        padding: 70px 7%;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .menu {
+        gap: 12px;
+    }
+
+    .menu a {
+        font-size: 11px;
+    }
+
+    .circulo {
+        width: 230px;
+        height: 230px;
+    }
+
+    .cartao {
+        padding: 22px;
+    }
+
+    .legenda {
+        letter-spacing: 3px;
+        font-size: 10px;
+    }
+
+    .frase-abertura {
+        font-size: 14px;
+    }
+
+    .botao-entrada {
+        padding: 13px 18px;
+        font-size: 10px;
+    }
+}
+
+/* MINHA FOTO */
+.foto-secao {
+    text-align: center;
+}
+
+.foto-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 35px;
+    background: #151515;
+    border: 1px solid #8b0000;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.2);
+    transition: 0.4s;
+}
+
+.foto-container:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 30px rgba(220, 0, 0, 0.4);
+}
+
+.foto-moldura {
+    width: 260px;
+    height: 300px;
+    margin: 0 auto 25px;
+    border: 4px solid #b30000;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(220, 0, 0, 0.3);
+}
+
+.foto-moldura img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s;
+}
+
+.foto-moldura img:hover {
+    transform: scale(1.08);
+}
+
+.foto-container h3 {
+    color: #ff3333;
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 15px;
+}
+
+.foto-container p {
+    color: #ccc;
+    line-height: 1.8;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+    .foto-container {
+        padding: 20px;
+    }
+
+    .foto-moldura {
+        width: 220px;
+        height: 260px;
+    }
+}
